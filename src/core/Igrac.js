@@ -30,7 +30,7 @@ export default class Igrac extends Predmet {
   }
 
   proveriTipke() {
-    if (!this.ziv || !("igrac" in this.oznake)) return
+    if (!this.ziv || !('igrac' in this.oznake)) return
     if (tipke.stisnute[this.tipkaLevo]) this.nalevo()
     if (tipke.stisnute[this.tipkaDesno]) this.nadesno()
     if (tipke.stisnute[this.tipkaGore]) this.nagore()
@@ -55,13 +55,13 @@ export default class Igrac extends Predmet {
   }
 
   nagore() {
-    let ugao = this.komandeNapredne ? this.ugao : -$.KRUZNICA / 4
+    const ugao = this.komandeNapredne ? this.ugao : -$.KRUZNICA / 4
     this.dodajSilu(this.potisak, ugao)
   }
 
   nadole() {
-    let ugao = this.komandeNapredne ? this.ugao : $.KRUZNICA / 4
-    let potisak = this.komandeNapredne ? (-this.potisak / 10) : this.potisak
+    const ugao = this.komandeNapredne ? this.ugao : $.KRUZNICA / 4
+    const potisak = this.komandeNapredne ? (-this.potisak / 10) : this.potisak
     this.dodajSilu(potisak, ugao)
   }
 
