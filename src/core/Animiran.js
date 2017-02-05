@@ -2,7 +2,7 @@ import Vreme from './Vreme';
 import Predmet from './Predmet';
 import {podloga} from '../io/platno'
 
-export class Animiran extends Predmet {
+export default class Animiran extends Predmet {
 
   constructor(src, imenaAnimacija, slikaPoAnimaciji) { // broj ili niz brojeva ako su nejednake
     super(src);
