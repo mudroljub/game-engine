@@ -34,9 +34,13 @@ export default class Slika {
     this.visina = visina
   }
 
-  prevelicaj(procenat) {
+  skaliraj(procenat) {
     this.sirina *= procenat
     this.visina *= procenat
+  }
+
+  prevelicaj(procenat) {
+    this.skaliraj(procenat)
   }
 
   /* RENDER */
@@ -45,7 +49,7 @@ export default class Slika {
     podloga.drawImage(this.slika, this.x -this.sirina / 2, this.y -this.visina / 2, this.sirina, this.visina)
   }
 
-  renderAsync() {
+  renderObecaj() {
     if (this.ucitano) this.render()
     else this.slika.onload = () => this.render()
   }
