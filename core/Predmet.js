@@ -23,7 +23,7 @@ export default class Predmet extends Slika {
     this.x += this.dx
     this.y += this.dy
     this.proveriGranice()
-    this.crta()
+    // this.render()
   }
 
   /* POLOZAJ */
@@ -159,7 +159,7 @@ export default class Predmet extends Slika {
 
   /* RENDER */
 
-  crta() {
+  render() {
     if (!this.vidljiv) return
     podloga.save()
     podloga.translate(this.x, this.y)

@@ -77,7 +77,7 @@ export default class Animiran extends Predmet {
     podloga.drawImage(this.slika, slikaX, slikaY, tekuca.sirinaKadra, tekuca.visinaKadra, 0 - (tekuca.sirinaKadra / 2), 0 - (tekuca.visinaKadra / 2), tekuca.sirinaKadra, tekuca.visinaKadra)
   }
 
-  crta() {
+  render() {
     if (!this.vidljiv) return
     podloga.save()
     podloga.translate(this.x, this.y)

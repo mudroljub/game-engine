@@ -1,11 +1,22 @@
+import {platno, podloga} from '../io/platno'
+
 export default class Slika {
 
   constructor(src, sirina, visina) {
-    this.slika = new Image()
+    this.x = platno.width / 2
+    this.y = platno.height / 2
+    this.ucitano = false
+    const slika = this.slika = new Image()
+    slika.addEventListener('load', () => {  // radi za zaseban element, nece za atribut
+      this.sirina = sirina || this.slika.naturalWidth
+      this.visina = visina || this.slika.naturalHeight
+      this.ucitano = true
+    })
+    slika.src = src
+  }
+
+  zameniSliku(src) {
     this.slika.src = src
-    this.slikaMrtav = src
-    this.sirina = sirina || this.slika.naturalWidth
-    this.visina = visina || this.slika.naturalHeight
   }
 
   set slikaMrtav(src) {
@@ -14,10 +25,6 @@ export default class Slika {
 
   get slikaMrtav() {
     return this._slikaMrtav
-  }
-
-  zameniSliku(src) {
-    this.slika.src = src
   }
 
   /* VELICINA */
@@ -30,6 +37,17 @@ export default class Slika {
   prevelicaj(procenat) {
     this.sirina *= procenat
     this.visina *= procenat
+  }
+
+  /* RENDER */
+
+  render() {
+    podloga.drawImage(this.slika, this.x -this.sirina / 2, this.y -this.visina / 2, this.sirina, this.visina)
+  }
+
+  renderAsync() {
+    if (this.ucitano) this.render()
+    else this.slika.onload = () => this.render()
   }
 
 }

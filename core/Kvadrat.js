@@ -10,7 +10,7 @@ export default class Kvadrat {
     this.fillstyle = boja
   }
 
-  crta() {
+  render() {
     podloga.fillStyle = this.fillstyle
     podloga.fillRect(this.x, this.y, this.sirina, this.visina)
   }
