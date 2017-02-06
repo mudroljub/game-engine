@@ -3,16 +3,12 @@ import {platno, podloga} from '../io/platno'
 export default class Slika {
 
   constructor(src, sirina, visina) {
+    this.slika = new Image()
+    this.slika.src = src
+    this.sirina = sirina || this.slika.naturalWidth
+    this.visina = visina || this.slika.naturalHeight
     this.x = Math.round(platno.width / 2)
     this.y = Math.round(platno.height / 2)
-    this.ucitano = false
-    const slika = this.slika = new Image()
-    slika.addEventListener('load', () => {  // radi za zaseban element, nece za atribut
-      this.sirina = sirina || this.slika.naturalWidth
-      this.visina = visina || this.slika.naturalHeight
-      this.ucitano = true
-    })
-    slika.src = src
   }
 
   zameniSliku(src) {
@@ -39,20 +35,9 @@ export default class Slika {
     this.visina = Math.round(this.visina * procenat)
   }
 
-  skaliranjeObecaj(procenat) {
-    if (this.ucitano) this.skaliraj(procenat)
-    else this.slika.onload = () => this.skaliraj(procenat)
-  }
-
-  // @param atribut string: 'sirina' ili 'visina'
   prevelicaj(atribut, novaVelicina) {
     const razmera = novaVelicina / this[atribut]
     this.skaliraj(razmera)
-  }
-
-  prevelicanjeObecaj(atribut, novaVelicina) {
-    if (this.ucitano) this.prevelicaj(atribut, novaVelicina)
-    else this.slika.onload = () => this.prevelicaj(atribut, novaVelicina)
   }
 
   /* RENDER */
@@ -62,10 +47,4 @@ export default class Slika {
     const y = Math.round(this.y -this.visina / 2)
     podloga.drawImage(this.slika, x, y, this.sirina, this.visina)
   }
-
-  renderObecaj() {
-    if (this.ucitano) this.render()
-    else this.slika.onload = () => this.render()
-  }
-
 }
