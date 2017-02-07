@@ -1,7 +1,7 @@
 import Slika from './Slika'
 import {platno, podloga} from '../io/platno'
 import mish from '../io/mish'
-import {pitagora, randomRange} from '../utils'
+import {pitagora} from '../utils'
 import {sudar} from '../akcije/sudari'
 
 export default class Predmet extends Slika {
@@ -129,25 +129,6 @@ export default class Predmet extends Slika {
 
   razmakDo(predmet) {
     return pitagora(this.x, predmet.x, this.y, predmet.y)
-  }
-
-  /* AKCIJE RANDOM */
-
-  postaviRandom() {
-    this.polozaj(Math.random() * platno.width, Math.random() * platno.height)
-  }
-
-  randomX(pocetnoX = this.sirina/2, zavrsnoX = platno.width - this.sirina/2) {
-    this.x = randomRange(pocetnoX, zavrsnoX)
-  }
-
-  randomY(pocetnoY = this.visina/2, zavrsnoY = platno.height - this.visina/2) {
-    this.y = randomRange(pocetnoY, zavrsnoY)
-  }
-
-  postaviRandomUredno() { // ne viri sa platna
-    this.randomX()
-    this.randomY()
   }
 
   /* MISH */
