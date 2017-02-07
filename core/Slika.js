@@ -1,4 +1,5 @@
 import {platno, podloga} from '../io/platno'
+import {pitagora} from 'utils'
 
 export default class Slika {
 
@@ -7,12 +8,16 @@ export default class Slika {
     this.y = Math.round(platno.height / 2)
     this.ucitano = false
     const slika = this.slika = new Image()
-    slika.addEventListener('load', () => {  // radi za zaseban element, nece za atribut
+    slika.addEventListener('load', () => {  // radi slika, nece this.slika
       this.sirina = sirina || this.slika.naturalWidth
       this.visina = visina || this.slika.naturalHeight
       this.ucitano = true
     })
     slika.src = src
+  }
+
+  get dijagonala() {
+    return pitagora(0, this.sirina, 0, this.visina)
   }
 
   zameniSliku(src) {

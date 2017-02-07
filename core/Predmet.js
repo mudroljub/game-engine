@@ -1,15 +1,13 @@
 import Slika from './Slika'
 import {platno, podloga} from '../io/platno'
 import mish from '../io/mish'
-import {randomRange} from '../utils'
+import {pitagora, randomRange} from '../utils'
 import {sudar} from '../akcije/sudari'
 
 export default class Predmet extends Slika {
 
-  constructor(src, sirina, visina, x = 200, y = 200) {
+  constructor(src, sirina, visina) {
     super(src, sirina, visina)
-    this.x = x
-    this.y = y
     this.ziv = true
     this.vidljiv = true
     this.ugao = 0
@@ -23,7 +21,6 @@ export default class Predmet extends Slika {
     this.x += this.dx
     this.y += this.dy
     this.proveriGranice()
-    // this.render()
   }
 
   /* POLOZAJ */
@@ -35,25 +32,6 @@ export default class Predmet extends Slika {
   polozaj(x, y) {
     this.x = x
     this.y = y
-  }
-
-  /* POLOZAJ RANDOM */
-
-  postaviRandom() {
-    this.polozaj(Math.random() * platno.width, Math.random() * platno.height)
-  }
-
-  randomX(pocetnoX = this.sirina/2, zavrsnoX = platno.width - this.sirina/2) {
-    this.x = randomRange(pocetnoX, zavrsnoX)
-  }
-
-  randomY(pocetnoY = this.visina/2, zavrsnoY = platno.height - this.visina/2) {
-    this.y = randomRange(pocetnoY, zavrsnoY)
-  }
-
-  postaviRandomUredno() { // ne viri sa platna
-    this.randomX()
-    this.randomY()
   }
 
   /* KRETANJE */
@@ -74,6 +52,11 @@ export default class Predmet extends Slika {
 
   set brzina(novaBrzina) {
     this.azurirajSilu(novaBrzina, this.ugao)
+  }
+
+  trenje(koeficijent = 0.1) {
+    const modifikator = 1 - koeficijent
+    this.brzina *= modifikator
   }
 
   pomeri(razmak) {
@@ -145,9 +128,26 @@ export default class Predmet extends Slika {
   }
 
   razmakDo(predmet) {
-    const razlikaX = this.x - predmet.x
-    const razlikaY = this.y - predmet.y
-    return Math.sqrt((razlikaX * razlikaX) + (razlikaY * razlikaY))
+    return pitagora(this.x, predmet.x, this.y, predmet.y)
+  }
+
+  /* AKCIJE RANDOM */
+
+  postaviRandom() {
+    this.polozaj(Math.random() * platno.width, Math.random() * platno.height)
+  }
+
+  randomX(pocetnoX = this.sirina/2, zavrsnoX = platno.width - this.sirina/2) {
+    this.x = randomRange(pocetnoX, zavrsnoX)
+  }
+
+  randomY(pocetnoY = this.visina/2, zavrsnoY = platno.height - this.visina/2) {
+    this.y = randomRange(pocetnoY, zavrsnoY)
+  }
+
+  postaviRandomUredno() { // ne viri sa platna
+    this.randomX()
+    this.randomY()
   }
 
   /* MISH */
@@ -163,7 +163,7 @@ export default class Predmet extends Slika {
     if (!this.vidljiv) return
     podloga.save()
     podloga.translate(this.x, this.y)
-    podloga.rotate(this.ugao)
+    podloga.rotate(this.ugaoSlike || this.ugao)
     podloga.scale(this.skalarX, this.skalarY)
     podloga.drawImage(this.slika, -this.sirina / 2, -this.visina / 2, this.sirina, this.visina)
     podloga.restore()

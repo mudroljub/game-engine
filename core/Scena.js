@@ -8,6 +8,7 @@ export default class Scena {
     this.podloga = podloga
     this.nivoTla = this.visina
     this.loopID = null
+    this.start()
   }
 
   dodaj(...premeti) {
