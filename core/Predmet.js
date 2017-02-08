@@ -10,10 +10,12 @@ export default class Predmet extends Slika {
     super(src, sirina, visina)
     this.ziv = true
     this.vidljiv = true
+    this.dx = 0
+    this.dy = 0
     this.ugao = 0
     this.brzina = 0
-    this.skalarX = 1
-    this.skalarY = 1
+    // this.skalarX = 1
+    // this.skalarY = 1
     this.oznake = {}
   }
 
@@ -56,7 +58,8 @@ export default class Predmet extends Slika {
 
   trenje(koeficijent = 0.1) {
     const modifikator = 1 - koeficijent
-    this.brzina *= modifikator
+    this.dx *= modifikator
+    this.dy *= modifikator
   }
 
   pomeri(razmak) {
@@ -72,6 +75,7 @@ export default class Predmet extends Slika {
 
   get ugao() {
     return this._ugao
+    // return Math.atan2(this.dy, this.dx)
   }
 
   set ugao(noviUgao) {
@@ -145,20 +149,8 @@ export default class Predmet extends Slika {
     podloga.save()
     podloga.translate(this.x, this.y)
     podloga.rotate(this.ugaoSlike || this.ugao)
-    podloga.scale(this.skalarX, this.skalarY)
+    // podloga.scale(this.skalarX, this.skalarY)
     podloga.drawImage(this.slika, -this.sirina / 2, -this.visina / 2, this.sirina, this.visina)
     podloga.restore()
-  }
-
-  /* DEBUG */
-
-  log() {
-    const x = this.x.toFixed()
-    const y = this.y.toFixed()
-    const dx = this.dx.toFixed(2)
-    const dy = this.dy.toFixed(2)
-    const brzina = this.brzina.toFixed(2)
-    const ugao = this.ugao.toFixed(2)
-    console.log(`x: ${x}, y: ${y}, dx: ${dx}, dy: ${dy}, brzina: ${brzina}, ugao: ${ugao}, ziv: ${this.ziv}`)
   }
 }
