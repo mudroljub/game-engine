@@ -1,13 +1,12 @@
 import * as $ from '../konstante'
 
-const tipke = {
-  stisnute: new Array(256),
-  ukupnoStisnutih: 0,
+const tipke = []
 
+/*
   reset: () => {
     tipke.stisnute.map(tipka => tipke.stisnute[tipka] = false)
   }
-}
+*/
 
 /* FUNCTIONS */
 
@@ -25,18 +24,14 @@ const odluciKomandu = dodir => {
 /* EVENTS */
 
 document.addEventListener('keydown', e => {
-  if (!tipke.stisnute[e.keyCode]) tipke.ukupnoStisnutih++
-  tipke.stisnute[e.keyCode] = true
+  tipke[e.keyCode] = true
   neTresi(e)
 })
 
-document.addEventListener('keyup', e => {
-  tipke.stisnute[e.keyCode] = false
-  tipke.ukupnoStisnutih--
-})
+document.addEventListener('keyup', e => delete tipke[e.keyCode])
 
 document.addEventListener('touchstart', e => odluciKomandu(e.touches[0]))
 document.addEventListener('touchmove', e => odluciKomandu(e.touches[0]))
-document.addEventListener('touchend', () => tipke.reset())
+// document.addEventListener('touchend', () => tipke.reset())
 
 export default tipke

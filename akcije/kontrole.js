@@ -5,24 +5,24 @@ let pripremi = false
 
 // zahteva da akter ima implementirane metode
 export function proveriTipke(akter) {
-  if (tipke.stisnute[$.A]) akter.nalevo()
-  if (tipke.stisnute[$.D]) akter.nadesno()
-  if (tipke.stisnute[$.W]) akter.nagore()
-  if (tipke.stisnute[$.S]) akter.nadole()
-//  if (tipke.stisnute[$.RAZMAK]) akter.pucaj()
-	if (tipke.stisnute[$.RAZMAK]) {
+  if (tipke[$.A]) akter.nalevo()
+  if (tipke[$.D]) akter.nadesno()
+  if (tipke[$.W]) akter.nagore()
+  if (tipke[$.S]) akter.nadole()
+//  if (tipke[$.RAZMAK]) akter.pucaj()
+	if (tipke[$.RAZMAK]) {
 		pripremi = true
 	}	
-	if (pripremi && !tipke.stisnute[$.RAZMAK]) {
+	if (pripremi && !tipke[$.RAZMAK]) {
 		akter.pucaj()
 		pripremi = false
 	}	
 }
 
 export function proveriTipke2(akter) {
-  if (tipke.stisnute[$.LEVO]) akter.nalevo()
-  if (tipke.stisnute[$.DESNO]) akter.nadesno()
-  if (tipke.stisnute[$.GORE]) akter.nagore()
-  if (tipke.stisnute[$.DOLE]) akter.nadole()
-  if (tipke.stisnute[$.M]) akter.pucaj()
+  if (tipke[$.LEVO]) akter.nalevo()
+  if (tipke[$.DESNO]) akter.nadesno()
+  if (tipke[$.GORE]) akter.nagore()
+  if (tipke[$.DOLE]) akter.nadole()
+  if (tipke[$.M]) akter.pucaj()
 }
