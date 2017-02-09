@@ -6,6 +6,7 @@ export default class Slika {
   constructor(src, sirina, visina) {
     this.x = Math.round(platno.width / 2)
     this.y = Math.round(platno.height / 2)
+    this.z = 1
     this.ucitano = false
     const slika = this.slika = new Image()
     slika.addEventListener('load', () => {  // radi slika, nece this.slika

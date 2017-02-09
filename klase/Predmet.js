@@ -14,8 +14,6 @@ export default class Predmet extends Slika {
     this.dy = 0
     this.ugao = 0
     this.brzina = 0
-    // this.skalarX = 1
-    // this.skalarY = 1
     this.oznake = {}
   }
 
@@ -149,7 +147,7 @@ export default class Predmet extends Slika {
     podloga.save()
     podloga.translate(this.x, this.y)
     podloga.rotate(this.ugaoSlike || this.ugao)
-    // podloga.scale(this.skalarX, this.skalarY)
+    podloga.scale(this.z, this.z)
     podloga.drawImage(this.slika, -this.sirina / 2, -this.visina / 2, this.sirina, this.visina)
     podloga.restore()
   }
