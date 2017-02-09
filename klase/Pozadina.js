@@ -1,4 +1,4 @@
-import Slika from '../core/Slika'
+import Slika from '../klase/Slika'
 import platno from '../io/platno'
 
 export default class Pozadina extends Slika {
