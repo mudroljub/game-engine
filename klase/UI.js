@@ -14,10 +14,9 @@ export default class UI {
   }
 
   render() {
-    if (this.upamcen !== this.sablon()) {
-      this.element.innerHTML = this.sablon()
-      this.upamcen = this.sablon()
-    }
+    if (this.upamcen === this.sablon()) return
+    this.element.innerHTML = this.sablon()
+    this.upamcen = this.sablon()
   }
 
   clear() {
