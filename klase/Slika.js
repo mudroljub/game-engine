@@ -9,12 +9,12 @@ export default class Slika {
     this.z = 1
     this.ucitano = false
     const slika = this.slika = new Image()
-    slika.addEventListener('load', () => {  // radi slika, nece this.slika
+    slika.addEventListener('load', () => {  // radi samo slika, nece this.slika
       this.sirina = sirina || this.slika.naturalWidth
       this.visina = visina || this.slika.naturalHeight
       this.ucitano = true
     })
-    slika.src = src
+    slika.src = this.slikaMrtav = src
   }
 
   get dijagonala() {
@@ -23,14 +23,6 @@ export default class Slika {
 
   zameniSliku(src) {
     this.slika.src = src
-  }
-
-  set slikaMrtav(src) {
-    this._slikaMrtav = src
-  }
-
-  get slikaMrtav() {
-    return this._slikaMrtav
   }
 
   /* VELICINA */
