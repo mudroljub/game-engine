@@ -1,5 +1,7 @@
 import {platno, podloga} from '../io/platno'
 
+let then = 0
+
 export default class Scena {
 
   constructor() {
@@ -40,19 +42,22 @@ export default class Scena {
 
   /* PETLJA */
 
-  update() {
-    this.predmeti.map(predmet => 'update' in predmet && predmet.update())
+  update(dt) {
+    this.predmeti.map(predmet => 'update' in predmet && predmet.update(dt))
   }
 
   render() {
     this.predmeti.map(predmet => 'render' in predmet && predmet.render())
   }
 
-  loop() {
+  loop(time) {
+    const now = time / 1000 || 0
+    const delta = now - then
     this.loopID = window.requestAnimationFrame(this.loop.bind(this))
     this.cisti()
-    this.update()
+    this.update(delta)
     this.render()
+    then = now
   }
 
   start() {

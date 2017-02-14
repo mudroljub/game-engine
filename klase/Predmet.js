@@ -2,24 +2,25 @@ import Slika from './Slika'
 import {platno, podloga} from '../io/platno'
 import mish from '../io/mish'
 import {pitagora} from '../utils'
-import {sudar} from '../akcije/sudari'
+import {sudara} from '../akcije/sudari'
 
 export default class Predmet extends Slika {
 
   constructor(src, sirina, visina) {
     super(src, sirina, visina)
-    this.ziv = true
-    this.vidljiv = true
+    this.masa = 100
     this.dx = 0
     this.dy = 0
     this.ugao = 0
     this.brzina = 0
+    this.ziv = true
+    this.vidljiv = true
     this.oznake = {}
   }
 
-  update() {
-    this.x += this.dx
-    this.y += this.dy
+  update(delta) {
+    this.x += this.dx * delta
+    this.y += this.dy * delta
     this.proveriGranice()
   }
 
@@ -126,7 +127,7 @@ export default class Predmet extends Slika {
 
   sudara(predmet) {
     if (!this.vidljiv || !predmet.vidljiv) return false
-    return sudar(this, predmet)
+    return sudara(this, predmet)
   }
 
   razmakDo(predmet) {

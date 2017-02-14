@@ -18,7 +18,7 @@ const dole = predmet => {
 
 /* SUDARNE FUNKCIJE */
 
-export function sudar(kvadrat1, kvadrat2) {
+export function sudara(kvadrat1, kvadrat2) {
   return (
     dole(kvadrat1) > gore(kvadrat2) &&
     gore(kvadrat1) < dole(kvadrat2) &&
