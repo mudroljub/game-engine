@@ -8,7 +8,6 @@ export default class Predmet extends Slika {
 
   constructor(src, sirina, visina) {
     super(src, sirina, visina)
-    this.masa = 100
     this.dx = 0
     this.dy = 0
     this.ugao = 0
