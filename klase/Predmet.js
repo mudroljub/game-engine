@@ -12,6 +12,7 @@ export default class Predmet extends Slika {
     this.dy = 0
     this.ugao = 0
     this.brzina = 0
+    this.platno = platno
     this.ziv = true
     this.vidljiv = true
     this.oznake = {}
