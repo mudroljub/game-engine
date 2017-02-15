@@ -42,20 +42,31 @@ export default class Scena {
 
   /* PETLJA */
 
+  proveriUnose() {
+    this.predmeti
+      .filter(predmet => 'proveriTipke' in predmet)
+      .map(predmet => predmet.proveriTipke())
+  }
+
   update(dt) {
-    this.predmeti.map(predmet => 'update' in predmet && predmet.update(dt))
+    this.predmeti
+      .filter(predmet => 'update' in predmet)
+      .map(predmet => predmet.update(dt))
   }
 
   render() {
-    this.predmeti.map(predmet => 'render' in predmet && predmet.render())
+    this.predmeti
+      .filter(predmet => 'render' in predmet)
+      .map(predmet => predmet.render())
   }
 
   loop(time) {
     const now = time / 1000 || 0
     const delta = now - then
     this.loopID = window.requestAnimationFrame(this.loop.bind(this))
-    this.cisti()
+    this.proveriUnose()
     this.update(delta)
+    this.cisti()
     this.render()
     then = now
   }
@@ -77,6 +88,10 @@ export default class Scena {
     this.predmeti = []
   }
 
+  get ide() {
+    return Boolean(this.loopID)
+  }
+
   /* POZADINA */
 
   set bojaPozadine(boja) {
@@ -92,7 +107,7 @@ export default class Scena {
     this.podloga.clearRect(0, 0, this.sirina, this.visina)
   }
 
-  /* CRTANJE (prebaciti na pozadinu) */
+  /* CRTANJE (prebaciti na pozadinu, platno ili Crtac) */
 
   crtaNebo(nivoTla, bojaNeba = 'blue', bojaNebaPreliv = 'lightblue', pocetakPreliva = 0) {
     this.podloga.fillStyle = bojaNeba
