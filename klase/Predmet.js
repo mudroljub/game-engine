@@ -147,7 +147,7 @@ export default class Predmet extends Slika {
     if (!this.vidljiv) return
     podloga.save()
     podloga.translate(this.x, this.y)
-    podloga.rotate(this.ugaoSlike || this.ugao)
+    podloga.rotate(isNaN(this.ugaoSlike) ? this.ugao : this.ugaoSlike)
     podloga.scale(this.z, this.z)
     podloga.drawImage(this.slika, -this.sirina / 2, -this.visina / 2, this.sirina, this.visina)
     podloga.restore()

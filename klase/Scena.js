@@ -66,6 +66,7 @@ export default class Scena {
     this.loopID = window.requestAnimationFrame(this.loop.bind(this))
     this.proveriUnose()
     this.update(delta)
+    if (this.customUpdate) this.customUpdate()
     this.cisti()
     this.render()
     then = now
