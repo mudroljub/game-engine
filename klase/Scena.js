@@ -17,29 +17,6 @@ export default class Scena {
     this.predmeti.push(...premeti)
   }
 
-  /* VELIČINA */
-
-  set sirina(sirina) {
-    this.platno.width = sirina
-  }
-
-  get sirina() {
-    return this.platno.width
-  }
-
-  set visina(visina) {
-    this.platno.height = visina
-  }
-
-  get visina() {
-    return this.platno.height
-  }
-
-  velicina(sirina, visina) {
-    this.sirina = sirina
-    this.visina = visina
-  }
-
   /* PETLJA */
 
   proveriUnose() {
