@@ -84,27 +84,4 @@ export default class Scena {
   cisti() {
     this.podloga.clearRect(0, 0, this.sirina, this.visina)
   }
-
-  /* CRTANJE (prebaciti na pozadinu, platno ili Crtac) */
-
-  crtaNebo(nivoTla, bojaNeba = 'blue', bojaNebaPreliv = 'lightblue', pocetakPreliva = 0) {
-    this.podloga.fillStyle = bojaNeba
-    if (bojaNebaPreliv) {
-      const preliv = this.podloga.createLinearGradient(0, pocetakPreliva, 0, nivoTla)
-      preliv.addColorStop(0, bojaNeba)
-      preliv.addColorStop(1, bojaNebaPreliv)
-      this.podloga.fillStyle = preliv
-    }
-    this.podloga.fillRect(0, 0, this.platno.width, nivoTla)
-  }
-
-  crtaZemlju(nivoTla, bojaZemlje = '#00b011') {
-    this.podloga.fillStyle = bojaZemlje
-    this.podloga.fillRect(0, nivoTla, this.platno.width, this.platno.height)
-  }
-
-  crtaNeboZemlju(nivoTla, bojaNeba = 'lightblue', bojaZemlje = 'green', bojaNebaPreliv = 'blue') {
-    this.crtaNebo(nivoTla, bojaNeba, bojaNebaPreliv)
-    this.crtaZemlju(nivoTla, bojaZemlje)
-  }
 }
