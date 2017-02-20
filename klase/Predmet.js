@@ -79,6 +79,7 @@ export default class Predmet extends Slika {
 
   set ugao(noviUgao) {
     this._ugao = noviUgao % (Math.PI * 2)
+    if (this._ugao < 0) this._ugao += Math.PI * 2
     this.azurirajSilu()
   }
 
