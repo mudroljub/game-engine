@@ -8,7 +8,7 @@ if (!document.getElementById('platno')) {
 }
 
 platno.height = window.innerHeight || 600 // mora prvo visina
-platno.width = document.body.clientWidth || 800
+platno.width = window.innerWidth > document.body.clientWidth ? window.innerWidth : document.body.clientWidth
 platno.style.backgroundColor = 'lightgray'
 platno.focus()
 
