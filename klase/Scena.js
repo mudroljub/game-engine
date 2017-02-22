@@ -1,6 +1,7 @@
 import {platno, podloga} from '../io/platno'
 
 let then = 0
+let loopID = null
 
 export default class Scena {
 
@@ -9,8 +10,6 @@ export default class Scena {
     this.platno = platno
     this.podloga = podloga
     this.nivoTla = this.visina
-    this.loopID = null
-    this.start()
   }
 
   dodaj(...premeti) {
@@ -40,7 +39,7 @@ export default class Scena {
   loop(time) {
     const now = time / 1000 || 0
     const delta = now - then
-    this.loopID = window.requestAnimationFrame(this.loop.bind(this))
+    loopID = window.requestAnimationFrame(this.loop.bind(this))
     this.proveriUnose()
     this.update(delta)
     if (this.customUpdate) this.customUpdate()
@@ -50,24 +49,24 @@ export default class Scena {
   }
 
   start() {
-    if (this.loopID) return
+    if (loopID) return
     this.loop()
   }
 
-  stop() {
-    if (!this.loopID) return
-    window.cancelAnimationFrame(this.loopID)
-    this.loopID = null
+  static get ide() {
+    return Boolean(loopID)
+  }
+
+  static stop() {
+    if (!loopID) return
+    window.cancelAnimationFrame(loopID)
+    loopID = null
   }
 
   end() {
     this.stop()
     this.cisti()
     this.predmeti = []
-  }
-
-  get ide() {
-    return Boolean(this.loopID)
   }
 
   /* POZADINA */

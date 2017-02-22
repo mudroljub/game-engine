@@ -114,7 +114,6 @@ export default class Predmet extends Slika {
 
   umri() {
     this.stani()
-    this.zameniSliku(this.slikaMrtav)
     this.ziv = false
   }
 
@@ -150,7 +149,8 @@ export default class Predmet extends Slika {
     podloga.translate(this.x, this.y)
     podloga.rotate(isNaN(this.ugaoSlike) ? this.ugao : this.ugaoSlike)
     podloga.scale(this.z, this.z)
-    podloga.drawImage(this.slika, -this.sirina / 2, -this.visina / 2, this.sirina, this.visina)
+    const slika = this.mrtav ? this.slikaMrtav : this.slika
+    podloga.drawImage(slika, -this.sirina / 2, -this.visina / 2, this.sirina, this.visina)
     podloga.restore()
   }
 }

@@ -8,20 +8,21 @@ export default class Slika {
     this.y = Math.round(platno.height / 2)
     this.z = 1
     this.ucitano = false
-    const slika = this.slika = new Image()
-    slika.addEventListener('load', () => {  // radi samo slika, nece this.slika
+    this.slika = new Image()
+    this.slikaMrtav = new Image()
+    this.slika.addEventListener('load', () => {
       this.sirina = sirina || this.slika.naturalWidth
       this.visina = visina || this.slika.naturalHeight
       this.ucitano = true
     })
-    slika.src = this.slikaMrtav = src
+    this.slika.src = this.slikaMrtav.src = src
   }
 
   get dijagonala() {
     return pitagora(0, this.sirina, 0, this.visina)
   }
 
-  zameniSliku(src) {
+  postaviSliku(src) {
     this.slika.src = src
   }
 
@@ -33,8 +34,8 @@ export default class Slika {
   }
 
   skaliraj(procenat) {
-    this.sirina = Math.round(this.sirina * procenat)
-    this.visina = Math.round(this.visina * procenat)
+    this.sirina = Math.round(this.slika.naturalWidth * procenat)
+    this.visina = Math.round(this.slika.naturalHeight * procenat)
   }
 
   skaliranjeObecaj(procenat) {
@@ -56,8 +57,8 @@ export default class Slika {
   /* RENDER */
 
   render() {
-    const x = Math.round(this.x -this.sirina / 2)
-    const y = Math.round(this.y -this.visina / 2)
+    const x = Math.round(this.x - this.sirina / 2)
+    const y = Math.round(this.y - this.visina / 2)
     podloga.drawImage(this.slika, x, y, this.sirina, this.visina)
   }
 
