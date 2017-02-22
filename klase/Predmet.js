@@ -149,8 +149,7 @@ export default class Predmet extends Slika {
     podloga.translate(this.x, this.y)
     podloga.rotate(isNaN(this.ugaoSlike) ? this.ugao : this.ugaoSlike)
     podloga.scale(this.z, this.z)
-    const slika = this.mrtav ? this.slikaMrtav : this.slika
-    podloga.drawImage(slika, -this.sirina / 2, -this.visina / 2, this.sirina, this.visina)
+    podloga.drawImage(this.slika, -this.sirina / 2, -this.visina / 2, this.sirina, this.visina)
     podloga.restore()
   }
 }

@@ -9,13 +9,12 @@ export default class Slika {
     this.z = 1
     this.ucitano = false
     this.slika = new Image()
-    this.slikaMrtav = new Image()
     this.slika.addEventListener('load', () => {
       this.sirina = sirina || this.slika.naturalWidth
       this.visina = visina || this.slika.naturalHeight
       this.ucitano = true
     })
-    this.slika.src = this.slikaMrtav.src = src
+    this.slika.src = src
   }
 
   get dijagonala() {
