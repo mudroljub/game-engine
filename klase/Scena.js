@@ -18,7 +18,7 @@ export default class Scena {
 
   /* PETLJA */
 
-  proveriUnose() {
+  obradiUnose() {
     this.predmeti
       .filter(predmet => 'proveriTipke' in predmet)
       .map(predmet => predmet.proveriTipke())
@@ -40,7 +40,7 @@ export default class Scena {
     const now = time / 1000 || 0
     const delta = now - then
     loopID = window.requestAnimationFrame(this.loop.bind(this))
-    this.proveriUnose()
+    this.obradiUnose()
     this.update(delta)
     if (this.customUpdate) this.customUpdate()
     this.cisti()
