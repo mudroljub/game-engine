@@ -20,6 +20,10 @@ const odluciKomandu = dodir => {
   if (dodir.pageX >= window.innerWidth / 2) tipke[DESNO] = true
 }
 
+const tipkeReset = () => {
+  tipke.length = 0
+}
+
 /* EVENTS */
 
 document.addEventListener('keydown', neTresi)
@@ -30,3 +34,8 @@ document.addEventListener('touchstart', e => odluciKomandu(e.touches[0]))
 document.addEventListener('touchmove', e => odluciKomandu(e.touches[0]))
 
 export default tipke
+
+export {
+  tipke,
+  tipkeReset
+}
